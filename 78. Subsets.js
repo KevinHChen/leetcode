@@ -18,5 +18,5 @@ var subsets = function (nums) {
 };
 
 var bitIsOne = function (num, bit) {
-    return parseInt(num & (1 << bit)) != 0
+    return (num & (1 << bit)) !== 0
 }
