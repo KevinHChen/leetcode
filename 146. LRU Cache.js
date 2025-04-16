@@ -43,3 +43,5 @@ LRUCache.prototype.put = function (key, value) {
  * var param_1 = obj.get(key)
  * obj.put(key,value)
  */
+
+// alternatively, use Map + doubly linked list (with head and tail within it)
