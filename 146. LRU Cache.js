@@ -11,7 +11,8 @@ var LRUCache = function (capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function (key) {
-    if (!this.cache.has(key)) return -1
+    if (!this.cache.has(key)) 
+        return -1
     // key exists
     const value = this.cache.get(key)
     this.cache.delete(key)
@@ -25,16 +26,17 @@ LRUCache.prototype.get = function (key) {
  * @return {void}
  */
 LRUCache.prototype.put = function (key, value) {
-    // key exists, update it
-    if (this.cache.has(key)) {
+    // key exists, remove it
+    if (this.cache.has(key)) 
         this.cache.delete(key)
-        this.cache.set(key, value)
-    } else { // key doesn't exist, insert it
-        if (this.cache.size >= this.capacity) {
-            this.cache.delete(this.cache.keys().next().value) // remove first element from the map
-        }
-        this.cache.set(key, value)
+
+    // handle overflow
+    if (this.cache.size >= this.capacity) {
+        this.cache.delete(this.cache.keys().next().value) // remove first element from the map
     }
+    
+    // insert element
+    this.cache.set(key, value)
 };
 
 /** 
@@ -43,5 +45,3 @@ LRUCache.prototype.put = function (key, value) {
  * var param_1 = obj.get(key)
  * obj.put(key,value)
  */
-
-// alternatively, use Map + doubly linked list (with head and tail within it)
