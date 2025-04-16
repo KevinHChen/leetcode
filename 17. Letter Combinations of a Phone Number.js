@@ -22,6 +22,8 @@ var letterCombinations = function (digits) {
         return mapping.get(digits[0])
     }
     const combinations = letterCombinations(digits.substring(1));
+
+    /* Explanation
     let collector = []
     for (x of mapping.get(digits[0])) {
         for (y of combinations) {
@@ -29,4 +31,6 @@ var letterCombinations = function (digits) {
         }
     }
     return collector;
+    */
+    return mapping.get(digits[0]).flatMap(x => combinations.map(y => x + y))
 };
