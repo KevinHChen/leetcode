@@ -22,7 +22,11 @@ var jump = function (nums) {
         // update the farthest reachable index
         farthest = Math.max(farthest, i + nums[i])
 
-        if (i == currentJumpEndsAt) { // we are at the end of the current jump
+        /**
+         * Once you reach i === currentEnd, it means:
+         * “I’ve checked everything I could in this jump. To go farther, I must now make a jump, and that jump will take me to farthest.”
+         */
+        if (i == currentJumpEndsAt) { 
             jump++ // we need to jump
             currentJumpEndsAt = farthest // update the end of the current jump
         }
