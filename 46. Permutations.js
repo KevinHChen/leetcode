@@ -1,23 +1,21 @@
-let result;
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
 var permute = function(nums) {
-    result = []
+    let result = []
+    var perm = function(nums, path) {
+        if (nums.length == 0) {
+            result.push(path)
+            return
+        }
+
+        for (let i=0;i<nums.length;++i) {
+            const newPath = [...path, nums[i]]
+            const newRemaining = [...nums.slice(0,i), ...nums.slice(i+1)]
+            perm(newRemaining, newPath)
+        }
+    }
     perm(nums,[])
     return result
 };
-
-var perm = function(nums, path) {
-    if (nums.length == 0) {
-        result.push(path)
-        return
-    }
-
-    for (let i=0;i<nums.length;++i) {
-        const newPath = [...path, nums[i]]
-        const newRemaining = [...nums.slice(0,i), ...nums.slice(i+1)]
-        perm(newRemaining, newPath)
-    }
-}
