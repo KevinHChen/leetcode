@@ -42,11 +42,11 @@ var longestConsecutive = function (nums) {
  */
 var longestConsecutive = function (nums) {
     let mapping = new Map()
-    for (num of nums) {
+    for (let num of nums) {
         mapping.set(num, true)
     }
     let longest = 0
-    for (num of nums) {
+    for (let num of nums) {
         let cnt = 0
         while (mapping.has(num)) {
             cnt++
