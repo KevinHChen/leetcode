@@ -53,7 +53,7 @@ BSTIterator.prototype.hasNext = function () {
     if (nextNode !== undefined) {
         this.currentVal = nextNode.val
     }
-    return nextNode !== undefined
+    return nextNode !== undefined // compare to undefined but not null
 };
 
 BSTIterator.prototype.nextNode = function () {
@@ -66,7 +66,7 @@ BSTIterator.prototype.nextNode = function () {
         this.current = node.right
         return node
     }
-    return undefined
+    return undefined // Not required, but added for clarity
 }
 
 /** 
