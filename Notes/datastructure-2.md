@@ -15,7 +15,7 @@
 |                | Map             | `array.map(x => x * 2)`                                                     |
 |                | Reduce          | `array.reduce((acc, val) => acc + val, 0)`                                  |
 |                | Initialization  | `let array = [1, 2, 3];`<br>`let array = new Array(5);`<br>`let array = Array.from([1, 2, 3]);` |
-| **Object**     | Loop            | `Object.keys(obj).forEach(key => { console.log(obj[key]); })`                |
+| **Object**     | Loop            | `Object.keys(obj).forEach(key => { console.log(obj[key]); })` <br/> <br/> `Object.entries(obj).forEach((key, val) => {console.log($key, $value)})`                |
 |                | Add             | `obj.key = 10`<br>`obj[key] = 10`                                           |
 |                | Delete          | `delete obj.key`                                                            |
 |                | Has             | `'key' in obj`<br>`obj.hasOwnProperty('key')`                               |
@@ -34,9 +34,9 @@
 |                | Get             | `m.get('key')`                                                              |
 |                | Clear           | `m.clear()`                                                                 |
 |                | Size            | `m.size`                                                                    |
-|                | Keys            | `m.keys()`                                                                  |
-|                | Values          | `m.values()`                                                                |
-|                | Entries         | `m.entries()`                                                               |
+|                | Keys            | `Array.from(m.keys()).forEach(x => console.log(x));`                                                                  |
+|                | Values          | `Array.from(m.values()).forEach(x => console.log(x));`                                                                |
+|                | Entries         | `Array.from(m.entries()).forEach(([key, val]) => { console.log($key, $val); });`                                |
 |                | Initialization  | `let map = new Map();`<br>`let map = new Map([['key1', 'value1'], ['key2', 'value2']]);` |
 | **Set**        | Loop            | `set.forEach(val => { console.log(val); })`                                 |
 |                | Add             | `set.add(10)`                                                               |
@@ -49,9 +49,9 @@
 |                | Difference      | `new Set([...set1].filter(x => !set2.has(x)))`                              |
 |                | Initialization  | `let set = new Set();`<br>`let set = new Set([1, 2, 3]);`<br>`let set = new Set('abc');` |
 
-### Additional Examples and Explanations
+## String Examples and Explanations
 
-#### Splice
+### Splice
 The `splice` method is used to add, remove, or replace elements in an array.
 **Signature**: `array.splice(start, deleteCount, item1, item2, ..., itemN)`
 
@@ -75,7 +75,7 @@ array.splice(2, 2, 6, 7); // Replaces 2 elements starting at index 2 with 6 and 
 console.log(array); // Output: [1, 2, 6, 7, 5]
 ```
 
-#### Reduce
+### Reduce
 The `reduce` method is used to apply a function to each element of an array, reducing it to a single value.
 **Signature**: `array.reduce(callback, initialValue)`
 
@@ -104,4 +104,39 @@ let count = fruits.reduce((acc, fruit) => {
     return acc;
 }, {});
 console.log(count); // Output: { apple: 3, banana: 2, orange: 1 }
+```
+## Entries
+### Object.entries()
+The `Object.entries()` method returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs.
+
+```javascript
+let obj = { a: 1, b: 2, c: 3 };
+let entries = Object.entries(obj);
+console.log(entries); // Output: [['a', 1], ['b', 2], ['c', 3]]
+
+// Iterating over entries
+entries.forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+});
+// Output:
+// a: 1
+// b: 2
+// c: 3
+```
+
+### Map.entries()
+The `entries()` method returns a new iterator object that contains the `[key, value]` pairs for each element in the `Map`.
+
+```javascript
+let map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+let entries = map.entries();
+
+// Iterating over entries
+for (let [key, value] of entries) {
+    console.log(`${key}: ${value}`);
+}
+// Output:
+// a: 1
+// b: 2
+// c: 3
 ```
