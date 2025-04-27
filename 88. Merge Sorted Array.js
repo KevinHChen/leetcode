@@ -1,4 +1,30 @@
 /**
+ * Solution 3: similar to solution 2, shorter but a little bit difficult to understand
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+var merge = function (nums1, m, nums2, n) {
+    let p1 = m - 1 // last valid number of nums1
+    let p2 = n - 1 // last valid number of nums2
+    let insertPos = nums1.length - 1
+
+    while (p2 >= 0) { // nums2 not yet ended
+        // nums1 not yet end and number in nums1 is greater than in nums2
+        if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+            nums1[insertPos] = nums1[p1--]
+        } else {
+            // nums1 ends, OR number in nums1 is smaller
+            nums1[insertPos] = nums2[p2--]
+        }
+        insertPos--
+    }
+
+};
+
+/**
  * Solution 2: copy from end to begin
  * @param {number[]} nums1
  * @param {number} m
