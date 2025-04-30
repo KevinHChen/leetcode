@@ -1,0 +1,29 @@
+/**
+ * Solution 1: slow (beats 8%)
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function (root) {
+
+    let backtrack = function (root) {
+        if (root === null) return [0, true]
+        if (root.left === null && root.right === null) return [1, true]
+
+        let [depth1, isBalanced1] = backtrack(root.left)
+        let [depth2, isBalanced2] = backtrack(root.right)
+        let depth = Math.max(depth1, depth2) + 1;
+        let isBalanced = isBalanced1 && isBalanced2 && Math.abs(depth1 - depth2) <= 1
+        return [depth, isBalanced]
+    }
+
+    let [depth, isBalanced] = backtrack(root)
+    return isBalanced
+};
