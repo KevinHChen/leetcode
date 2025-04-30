@@ -1,4 +1,41 @@
 /**
+ * Solution 2: fast, return unbalanced and tree depth with a single return value
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function (root) {
+
+    /**
+     * The trick:
+     * Return either -1 on unbalanced binary tree or tree height on balanced tree
+     * with this we don't have to return an array
+     */
+    let backtrack = function (root) {
+        if (root == null) return 0 //tree height
+        if (root.left == null && root.right == null) return 1 // tree height
+
+        let leftHeight = backtrack(root.left)
+        if (leftHeight == -1) return -1 // left subtree is unbalanced
+        let rightHeight = backtrack(root.right)
+        if (rightHeight == -1) return -1 // right subtree is unbalanced
+
+        if (Math.abs(leftHeight - rightHeight) > 1) return -1 // root unbalanced
+
+        return Math.max(leftHeight, rightHeight) + 1 // return tree depth
+    }
+
+    return backtrack(root) !== -1
+};
+
+/**
  * Solution 1: slow (beats 8%)
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
