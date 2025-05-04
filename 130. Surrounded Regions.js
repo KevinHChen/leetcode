@@ -1,4 +1,52 @@
 /**
+ * BFS solution: however, it's slow, might because of the array.unshift() is not effective?
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+var solve = function (board) {
+    let maxRow = board.length - 1
+    let maxCol = board[0].length - 1
+
+    let directions = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1]
+    ]
+
+    let queue = []
+    // find all the Os on the edges and add them to a queue
+    for (let i = 0; i <= maxRow; ++i) {
+        if (board[i][0] === 'O') queue.push([i, 0])
+        if (board[i][maxCol] === 'O') queue.push([i, maxCol])
+    }
+    for (let j = 0; j <= maxCol; ++j) {
+        if (board[0][j] === 'O') queue.push([0, j])
+        if (board[maxRow][j] === 'O') queue.push([maxRow, j])
+    }
+
+    while (queue.length !== 0) {
+        let [i, j] = queue.shift()
+        if (i < 0 || i > maxRow || j < 0 || j > maxCol || board[i][j] !== 'O') continue
+
+        board[i][j] = 'S'
+        directions.forEach(([xOffset, yOffset]) => queue.push([i + xOffset, j + yOffset]))
+    }
+
+    // set all remaining 'O' to 'X'
+    // set all 'S' to 'O'
+    for (let i = 0; i <= maxRow; ++i) {
+        for (let j = 0; j <= maxCol; ++j) {
+            if (board[i][j] === 'O') board[i][j] = 'X'
+            if (board[i][j] === 'S') board[i][j] = 'O'
+        }
+    }
+
+    return board
+};
+
+/**
+ * DFS recursive solution
  * @param {character[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
