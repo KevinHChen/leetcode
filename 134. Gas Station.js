@@ -1,4 +1,30 @@
 /**
+ * Version 4: Greedy solution
+ * @param {number[]} gas
+ * @param {number[]} cost
+ * @return {number}
+ */
+var canCompleteCircuit = function (gas, cost) {
+    let totalTank = 0
+    let currTank = 0
+    let startPos = 0
+
+    for (let i = 0; i < gas.length; ++i) {
+        diff = gas[i] - cost[i]
+        totalTank += diff
+        currTank += diff
+
+        if (currTank < 0) {
+            startPos = i + 1
+            currTank = 0
+        }
+    }
+
+    // if totalTank>=0 there will be a solution, take current pos as an greedy approach, otherwise return -1
+    return totalTank >= 0 ? startPos : -1
+};
+
+/**
  * Version 3: pass, but only better than 8%
  * @param {number[]} gas
  * @param {number[]} cost
