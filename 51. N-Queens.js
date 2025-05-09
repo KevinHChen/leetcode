@@ -4,7 +4,7 @@
  */
 var solveNQueens = function (n) {
     let singleResult = new Array(n).fill(null);
-    let Results = []
+    let results = []
 
     let satisfy = (i, j) => {
         for (let idx = 0; idx < i; ++idx) {
@@ -23,7 +23,7 @@ var solveNQueens = function (n) {
             }
             rows.push(row.join(""))
         }
-        Results.push(rows)
+        results.push(rows)
     }
 
     let i = 0
@@ -51,5 +51,5 @@ var solveNQueens = function (n) {
         i--
         j = singleResult[i] + 1
     }
-    return Results
+    return results
 };
