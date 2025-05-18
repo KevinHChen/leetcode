@@ -13,7 +13,7 @@ var combine = function (n, k) {
         }
         for (let i = start; i <= n; ++i) {
             path.push(i);
-            backtrack(i + 1, path, left - 1);
+            backtrack(i + 1, path, left - 1); // start with i+1, and the third param is `left-1` not `left--`
             path.pop();
         }
     }
