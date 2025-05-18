@@ -1,5 +1,5 @@
 /**
- * Solution 2: simulate the binary search
+ * Solution 2: simulate the binary search, >90%
  * @param {number[][]} matrix
  * @param {number} target
  * @return {boolean}
